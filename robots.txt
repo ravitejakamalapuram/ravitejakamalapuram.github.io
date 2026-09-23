@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ravitejakamalapuram.github.io/sitemap.xml
