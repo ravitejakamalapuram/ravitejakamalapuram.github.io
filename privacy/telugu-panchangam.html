@@ -81,7 +81,7 @@
     </header>
 
     <div class="highlight-box">
-      <strong>Summary:</strong> Telugu New Tab Calendar (పంచాంగం) is a local calendar dashboard. All astronomical calculations, panchangam timings, and festival dates are calculated locally on your device. The one exception is the optional "Use My Location" button: pressing it resolves your position through Chrome's built-in Google Location Service. We never receive, log, or transmit that result &mdash; it is stored only on your device, exactly like a manually picked city.
+      <strong>Summary:</strong> Telugu New Tab Calendar (పంచాంగం) is a local calendar dashboard. All astronomical calculations, panchangam timings, and festival dates are calculated locally on your device. If you choose to, you can type in a name, birth date and birth time for a personalized Sankalpam and horoscope, and save your own reminders &mdash; that information is used only on your device and is never transmitted anywhere. The one further exception is the optional "Use My Location" button: pressing it resolves your position through Chrome's built-in Google Location Service. We never receive, log, or transmit any of this data &mdash; it is stored only on your device.
     </div>
 
     <h2>1. Single Purpose</h2>
@@ -89,17 +89,19 @@
 
     <h2>2. Data Collection and Usage</h2>
     <ul>
-      <li><strong>No Personal Information</strong>: No login, identification, or registration required.</li>
+      <li><strong>No Account Required</strong>: No login, identification, or registration required.</li>
       <li><strong>No Tracking</strong>: No third-party analytics, ads, or tracking cookies.</li>
       <li><strong>Local Processing</strong>: All tithi, nakshatra, and rahu kalam calculations run offline in browser JavaScript.</li>
+      <li><strong>Optional Personalization</strong>: The settings screen lets you optionally type in a name, birth date and birth time so the extension can personalize your daily Sankalpam text and horoscope, and lets you save your own reminders. All of that is typed in by you, used entirely on your own device to render those features, and never leaves it &mdash; see Section 3 for details.</li>
       <li><strong>Optional Location</strong>: The extension defaults to Hyderabad and never requests your location automatically. If you press the opt-in "Use My Location" button, Chrome resolves it through the Google Location Service so timings can be computed for where you actually are &mdash; see Section 4 for details.</li>
     </ul>
 
     <h2>3. Permissions and Justifications</h2>
     <ul>
-      <li><code>storage</code>: Required to persist user preferences, including your selected city, locally on device via <code>chrome.storage.local</code>.</li>
+      <li><code>storage</code>: Required to persist your preferences locally via <code>chrome.storage.local</code> &mdash; your selected city, and, if you choose to enter them, your name, birth date and birth time for Sankalpam and horoscope personalization, plus any reminders you create.</li>
       <li><code>geolocation</code>: Used only when you press the opt-in "Use My Location" button, so sunrise, sunset, Rahu Kalam and other Panchangam timings can be computed for your actual location. Never requested automatically.</li>
     </ul>
+    <p>This on-device storage never leaves your device: no data is uploaded or synced to any external server by the extension. The only action that ever sends anything off your device is the optional "Use My Location" button described below, which hands the request to Chrome's own built-in geolocation service rather than to us.</p>
 
     <h2>4. Optional: "Use My Location"</h2>
     <p>Pressing "Use My Location" is the <strong>only</strong> action that sends anything off your device: Chrome resolves the request through its own built-in geolocation service (Google's, not ours), which the extension does not control and does not communicate with directly. We never receive, log, or transmit the result anywhere; the coordinates it returns are stored only in <code>chrome.storage.local</code> on your device, exactly like a manually picked city, and only if you pressed the button.</p>
