@@ -77,29 +77,37 @@
     <header>
       <a href="index.html" class="back">&larr; Back to Developer Privacy Hub</a>
       <h1>Privacy Policy for Telugu New Tab Calendar (పంచాంగం)</h1>
-      <div class="meta">Effective Date: September 21, 2026 | Publisher: Raviteja Kamalapuram</div>
+      <div class="meta">Effective Date: September 24, 2026 | Publisher: Raviteja Kamalapuram</div>
     </header>
 
     <div class="highlight-box">
-      <strong>Summary:</strong> Telugu New Tab Calendar (పంచాంగం) is a local calendar dashboard. All astronomical calculations, panchangam timings, and festival dates are calculated locally on your device without any external network calls or tracking.
+      <strong>Summary:</strong> Telugu New Tab Calendar (పంచాంగం) is a local calendar dashboard. All astronomical calculations, panchangam timings, and festival dates are calculated locally on your device. The one exception is the optional "Use My Location" button: pressing it resolves your position through Chrome's built-in Google Location Service. We never receive, log, or transmit that result &mdash; it is stored only on your device, exactly like a manually picked city.
     </div>
 
     <h2>1. Single Purpose</h2>
     <p>Telugu New Tab Calendar replaces the new tab page with a daily Telugu calendar and Panchangam dashboard calculated locally.</p>
 
-    <h2>2. Zero Data Collection</h2>
+    <h2>2. Data Collection and Usage</h2>
     <ul>
       <li><strong>No Personal Information</strong>: No login, identification, or registration required.</li>
       <li><strong>No Tracking</strong>: No third-party analytics, ads, or tracking cookies.</li>
       <li><strong>Local Processing</strong>: All tithi, nakshatra, and rahu kalam calculations run offline in browser JavaScript.</li>
+      <li><strong>Optional Location</strong>: The extension defaults to Hyderabad and never requests your location automatically. If you press the opt-in "Use My Location" button, Chrome resolves it through the Google Location Service so timings can be computed for where you actually are &mdash; see Section 4 for details.</li>
     </ul>
 
     <h2>3. Permissions and Justifications</h2>
     <ul>
-      <li><code>storage</code>: Required to persist user location settings (time zone and city offset) locally on device via <code>chrome.storage.local</code>.</li>
+      <li><code>storage</code>: Required to persist user preferences, including your selected city, locally on device via <code>chrome.storage.local</code>.</li>
+      <li><code>geolocation</code>: Used only when you press the opt-in "Use My Location" button, so sunrise, sunset, Rahu Kalam and other Panchangam timings can be computed for your actual location. Never requested automatically.</li>
     </ul>
 
-    <h2>4. Contact Information</h2>
+    <h2>4. Optional: "Use My Location"</h2>
+    <p>Pressing "Use My Location" is the <strong>only</strong> action that sends anything off your device: Chrome resolves the request through its own built-in geolocation service (Google's, not ours), which the extension does not control and does not communicate with directly. We never receive, log, or transmit the result anywhere; the coordinates it returns are stored only in <code>chrome.storage.local</code> on your device, exactly like a manually picked city, and only if you pressed the button.</p>
+
+    <h2>5. Third-Party Services</h2>
+    <p>This extension does not use any third-party analytics, advertising, or tracking services of its own, and it does not call any API you did not ask it to. The only exception is Chrome's built-in geolocation service, described above, which is invoked solely when you press "Use My Location."</p>
+
+    <h2>6. Contact Information</h2>
     <p>
       <strong>Developer:</strong> Raviteja Kamalapuram<br>
       <strong>Email:</strong> <a href="mailto:raviteja369.k@gmail.com" style="color: #38bdf8;">raviteja369.k@gmail.com</a>
