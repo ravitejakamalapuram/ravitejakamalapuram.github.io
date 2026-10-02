@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete your InvTracker account and data</title>
+  <meta name="description" content="Request deletion of your InvTracker account and all your data, without needing the app.">
+  <link rel="canonical" href="https://ravitejakamalapuram.github.io/delete/invtrack.html">
+  <style>
+    :root {
+      --primary: #6C63FF;
+      --primary-soft: #efeeff;
+      --text: #1e293b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --muted: #64748b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #a5a0ff;
+        --primary-soft: #25233f;
+        --text: #e2e8f0;
+        --bg: #0f172a;
+        --card-bg: #1e293b;
+        --border: #334155;
+        --muted: #94a3b8;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg);
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      border: 1px solid var(--border);
+    }
+    @media (max-width: 600px) { .container { padding: 1.25rem; } body { padding: 1rem; } }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+    h1 { font-size: 1.875rem; font-weight: 700; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+    p { margin-bottom: 1rem; }
+    ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.4rem; }
+    .badge {
+      display: inline-block; padding: 0.25rem 0.75rem; background-color: var(--primary-soft);
+      color: var(--primary); border-radius: 9999px; font-size: 0.875rem; font-weight: 500;
+    }
+    .meta { margin-top: 0.75rem; font-size: 0.875rem; color: var(--muted); }
+    .highlight-box {
+      background-color: var(--primary-soft); border-left: 4px solid var(--primary);
+      padding: 1rem; border-radius: 4px; margin: 1.5rem 0;
+    }
+    .table-wrap { overflow-x: auto; margin-bottom: 1rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.925rem; }
+    th, td { text-align: left; vertical-align: top; padding: 0.6rem; border-bottom: 1px solid var(--border); }
+    th { font-weight: 600; }
+    nav.toc { font-size: 0.925rem; margin-bottom: 1.5rem; }
+    nav.toc ol { margin-left: 1.5rem; }
+    footer { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.875rem; color: var(--muted); text-align: center; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .btn { font: inherit; font-weight: 600; padding: 0.65rem 1.25rem; border-radius: 8px; border: 1px solid var(--primary); background: var(--primary); color: #fff; cursor: pointer; }
+    .btn.secondary { background: transparent; color: var(--primary); }
+    .btn.danger { background: #b91c1c; border-color: #b91c1c; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .panel { border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+    .err { color: #b91c1c; font-weight: 600; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Account and data deletion</div>
+      <h1>Delete your InvTracker account</h1>
+      <div class="meta">
+        <strong>App:</strong> InvTracker (Android, Google Play package <code>com.invtracker.inv_tracker</code>) &bull;
+        <strong>Developer:</strong> Ravi Teja Kamalapuram
+      </div>
+    </header>
+
+    <p>Use this page to ask us to delete your InvTracker account and all the data linked to it. You do not need the
+      app installed. <strong>Your account and data will be deleted within 7 days of your request</strong> (normally the
+      next day). You can also delete your account inside the app: <em>Settings &rarr; Data &amp; Account &rarr; Delete Account</em>.</p>
+
+    <h2>How to request deletion</h2>
+    <ol style="margin-left:1.5rem;margin-bottom:1rem">
+      <li>Sign in with the same Google account you use in InvTracker.</li>
+      <li>Tick the confirmation box and press <strong>Request deletion</strong>.</li>
+      <li>You have 24 hours to change your mind: come back to this page, sign in and press <strong>Withdraw request</strong>.</li>
+    </ol>
+
+    <div class="panel" id="app">
+      <noscript><p class="err">This sign-in needs JavaScript. Without it, please email
+        <a href="mailto:raviteja369.k@gmail.com?subject=InvTracker%20account%20deletion%20request">raviteja369.k@gmail.com</a>
+        (see below).</p></noscript>
+      <div id="signed-out">
+        <button class="btn" id="signin" type="button">Sign in with Google to continue</button>
+      </div>
+      <div id="signed-in" hidden>
+        <p>Signed in as <strong id="who"></strong> &bull; <a href="#" id="signout">Sign out</a></p>
+        <p id="datainfo"></p>
+        <div id="pending" hidden>
+          <p><strong>Deletion requested on <span id="when"></span>.</strong> Your account and data will be deleted
+            within 7 days. Until it is processed you can withdraw the request.</p>
+          <button class="btn secondary" id="withdraw" type="button">Withdraw request</button>
+        </div>
+        <div id="form" hidden>
+          <p><label><input type="checkbox" id="confirm"> I understand this permanently deletes all my InvTracker data
+            and my sign-in account, and cannot be undone.</label></p>
+          <button class="btn danger" id="request" type="button" disabled>Request deletion</button>
+        </div>
+      </div>
+      <p id="msg" role="status"></p>
+    </div>
+
+    <h2>What is deleted</h2>
+    <ul>
+      <li>Every record synced from the app: investments, cash flows, archived items, goals, expected income,
+        document metadata, FIRE settings, profile, health-score history and cached exchange rates.</li>
+      <li>Your sign-in account itself (the Google link or guest account).</li>
+      <li>Files and the offline copy on your phone are yours to remove: uninstall the app or clear its storage in Android Settings.</li>
+    </ul>
+
+    <h2>What we keep, and for how long</h2>
+    <ul>
+      <li>An anonymised deletion record (a one-way hash of your user ID, counts and dates, no email or name) for 12 months, as proof the deletion happened.</li>
+      <li>Google's encrypted backups of the database, for a short period under Google's own schedule, then permanently erased.</li>
+      <li>Analytics data for up to 14 months and crash reports for about 90 days. They are linked only to a random user ID that no longer belongs to any account.</li>
+      <li>Support emails, until your question is answered.</li>
+    </ul>
+
+    <h2>Guest accounts</h2>
+    <p>Guest (anonymous) accounts cannot be identified from outside the app, so they cannot be requested here.
+      They are deleted automatically, with their data, after 30 days of inactivity. To delete one sooner, use
+      <em>Delete Guest Data</em> in the app.</p>
+
+    <h2>Cannot sign in with Google?</h2>
+    <p>Email <a href="mailto:raviteja369.k@gmail.com?subject=InvTracker%20account%20deletion%20request">raviteja369.k@gmail.com</a>
+      with the subject "InvTracker account deletion request" from the email address of the Google account you used.
+      We will confirm it is you and complete the deletion within 7 days of confirmation, and in any case within 30 days.</p>
+
+    <footer>
+      <a href="../privacy/invtrack.html">InvTracker Privacy Policy</a> &bull; <a href="../privacy/index.html">All privacy policies</a>
+    </footer>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, deleteDoc, serverTimestamp, collection, query, limit, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+    // Public web config of Firebase project invtracker-b19d1 (same as the app's web options; not a secret).
+    const app = initializeApp({
+      apiKey: "AIzaSyAeNvoVKLL4Mfx1vhfswoDkS1CpUXUMvAU",
+      authDomain: "invtracker-b19d1.firebaseapp.com",
+      projectId: "invtracker-b19d1",
+      appId: "1:784857267556:web:0998b5a7447df5301dce71",
+      messagingSenderId: "784857267556"
+    });
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const $ = (id) => document.getElementById(id);
+    const say = (text, isErr) => { $("msg").textContent = text || ""; $("msg").className = isErr ? "err" : ""; };
+    const requestRef = (uid) => doc(db, "deletionRequests", uid);
+
+    async function refresh(user) {
+      $("pending").hidden = $("form").hidden = true;
+      $("datainfo").textContent = "";
+      try {
+        const snap = await getDoc(requestRef(user.uid));
+        if (snap.exists()) {
+          const t = snap.data().requestedAt;
+          $("when").textContent = t && t.toDate ? t.toDate().toLocaleString() : "just now";
+          $("pending").hidden = false;
+          return;
+        }
+        const probe = await getDocs(query(collection(db, "users", user.uid, "investments"), limit(1)));
+        $("datainfo").textContent = probe.empty
+          ? "We found no synced data for this account; the account itself will still be removed."
+          : "We found data for this account.";
+        $("form").hidden = false;
+      } catch (e) {
+        say("Could not reach the server (" + (e.code || e.message) + "). Please try again, or use the email option below.", true);
+      }
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      $("signed-out").hidden = !!user;
+      $("signed-in").hidden = !user;
+      if (user) { $("who").textContent = user.email || user.uid; refresh(user); }
+    });
+
+    $("signin").onclick = async () => {
+      say("");
+      try { await signInWithPopup(auth, new GoogleAuthProvider()); }
+      catch (e) { say(e.code === "auth/popup-blocked" ? "Your browser blocked the sign-in window. Allow pop-ups for this page and try again." : "Sign-in failed (" + (e.code || e.message) + ").", true); }
+    };
+    $("signout").onclick = (e) => { e.preventDefault(); say(""); signOut(auth); };
+    $("confirm").onchange = () => { $("request").disabled = !$("confirm").checked; };
+    $("request").onclick = async () => {
+      const user = auth.currentUser; if (!user) return;
+      $("request").disabled = true; say("");
+      try {
+        await setDoc(requestRef(user.uid), { requestedAt: serverTimestamp(), source: "web", version: 1 });
+        await refresh(user);
+        say("Your request was received.");
+      } catch (e) { say("Could not file the request (" + (e.code || e.message) + "). Please try again or email us.", true); $("request").disabled = !$("confirm").checked; }
+    };
+    $("withdraw").onclick = async () => {
+      const user = auth.currentUser; if (!user) return;
+      say("");
+      try { await deleteDoc(requestRef(user.uid)); $("confirm").checked = false; $("request").disabled = true; await refresh(user); say("Your request was withdrawn. Nothing will be deleted."); }
+      catch (e) { say("Could not withdraw (" + (e.code || e.message) + ").", true); }
+    };
+  </script>
+</body>
+</html>
