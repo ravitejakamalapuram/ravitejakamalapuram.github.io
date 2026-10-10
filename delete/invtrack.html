@@ -8,23 +8,27 @@
   <link rel="canonical" href="https://ravitejakamalapuram.github.io/delete/invtrack.html">
   <style>
     :root {
-      --primary: #6C63FF;
+      --primary: #5b52e8;
+      --on-primary: #ffffff;
       --primary-soft: #efeeff;
       --text: #1e293b;
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --border: #e2e8f0;
-      --muted: #64748b;
+      --muted: #475569;
+      --err: #b91c1c;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --primary: #a5a0ff;
+        --on-primary: #0f172a;
         --primary-soft: #25233f;
         --text: #e2e8f0;
         --bg: #0f172a;
         --card-bg: #1e293b;
         --border: #334155;
-        --muted: #94a3b8;
+        --muted: #a3b1c6;
+        --err: #fca5a5;
       }
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -68,14 +72,14 @@
     nav.toc { font-size: 0.925rem; margin-bottom: 1.5rem; }
     nav.toc ol { margin-left: 1.5rem; }
     footer { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.875rem; color: var(--muted); text-align: center; }
-    a { color: var(--primary); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .btn { font: inherit; font-weight: 600; padding: 0.65rem 1.25rem; border-radius: 8px; border: 1px solid var(--primary); background: var(--primary); color: #fff; cursor: pointer; }
+    a { color: var(--primary); text-decoration: underline; }
+    a:hover { text-decoration-thickness: 2px; }
+    .btn { font: inherit; font-weight: 600; padding: 0.65rem 1.25rem; border-radius: 8px; border: 1px solid var(--primary); background: var(--primary); color: var(--on-primary); cursor: pointer; }
     .btn.secondary { background: transparent; color: var(--primary); }
-    .btn.danger { background: #b91c1c; border-color: #b91c1c; }
+    .btn.danger { background: #b91c1c; border-color: #b91c1c; color: #fff; }
     .btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .panel { border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin: 1rem 0; }
-    .err { color: #b91c1c; font-weight: 600; }
+    .err { color: var(--err); font-weight: 600; }
     [hidden] { display: none !important; }
   </style>
 </head>
@@ -91,8 +95,8 @@
     </header>
 
     <p>Use this page to ask us to delete your InvTrack account and all the data linked to it. You do not need the
-      app installed. <strong>Your account and data will be deleted within 7 days of your request</strong> (normally the
-      next day). You can also delete your account inside the app: <em>Settings &rarr; Data &amp; Account &rarr; Delete Account</em>.</p>
+      app installed. <strong>Your account and data will be deleted within 7 days of your request</strong> (usually within
+      2 days). You can also delete your account inside the app: <em>Settings &rarr; Data &amp; Account &rarr; Delete Account</em>.</p>
 
     <h2>How to request deletion</h2>
     <ol style="margin-left:1.5rem;margin-bottom:1rem">
@@ -103,7 +107,7 @@
 
     <div class="panel" id="app">
       <noscript><p class="err">This sign-in needs JavaScript. Without it, please email
-        <a href="mailto:raviteja369.k@gmail.com?subject=InvTrack%20account%20deletion%20request">raviteja369.k@gmail.com</a>
+        <a href="mailto:support@invtracker.app?subject=InvTrack%20account%20deletion%20request">support@invtracker.app</a>
         (see below).</p></noscript>
       <div id="signed-out">
         <button class="btn" id="signin" type="button">Sign in with Google to continue</button>
@@ -135,19 +139,21 @@
 
     <h2>What we keep, and for how long</h2>
     <ul>
-      <li>An anonymised deletion record (a one-way hash of your user ID, counts and dates, no email or name) for 12 months, as proof the deletion happened.</li>
+      <li>An anonymised deletion record (a one-way hash of your user ID, counts and dates, no email or name), kept as proof that the deletion happened. We aim to remove these records after 12 months.</li>
       <li>Google's encrypted backups of the database, for a short period under Google's own schedule, then permanently erased.</li>
-      <li>Analytics data for up to 14 months and crash reports for about 90 days. They are linked only to a random user ID that no longer belongs to any account.</li>
+      <li>Usage, crash and performance data from Firebase Analytics, Crashlytics and Performance Monitoring. It is tied to your user ID and device identifiers and is kept by Google for its own retention period for each service, then deleted automatically. We may ask Google to delete it sooner. Individual crash reports cannot be deleted; they expire automatically.</li>
       <li>Support emails, until your question is answered.</li>
     </ul>
 
     <h2>Guest accounts</h2>
     <p>A guest account has no email address, so it cannot be identified from outside the app and cannot be requested
       here. To delete a guest account and its data, open the app and go to <em>Settings &rarr; Data &amp; Account
-      &rarr; Delete Guest Data</em> before you uninstall the app.</p>
+      &rarr; Delete Guest Data</em> before you uninstall the app. If you have already uninstalled the app or signed out of the
+      guest account, you can no longer reach that guest data and we cannot match it to you. It stays stored until an
+      inactive-guest cleanup removes it.</p>
 
     <h2>Cannot sign in with Google?</h2>
-    <p>Email <a href="mailto:raviteja369.k@gmail.com?subject=InvTrack%20account%20deletion%20request">raviteja369.k@gmail.com</a>
+    <p>Email <a href="mailto:support@invtracker.app?subject=InvTrack%20account%20deletion%20request">support@invtracker.app</a>
       with the subject "InvTrack account deletion request" from the email address of the Google account you used.
       We will confirm it is you and complete the deletion within 7 days of confirmation, and in any case within 30 days.</p>
 
@@ -157,9 +163,21 @@
   </div>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
-    import { getFirestore, doc, getDoc, setDoc, deleteDoc, serverTimestamp, collection, query, limit, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+    const $ = (id) => document.getElementById(id);
+    const say = (text, isErr) => { $("msg").textContent = text || ""; $("msg").className = isErr ? "err" : ""; };
+    // Loaded dynamically so a blocked or unreachable SDK shows a message instead of a dead button.
+    const SDK = "https://www.gstatic.com/firebasejs/11.10.0/";
+    let initializeApp, getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged,
+      getFirestore, doc, getDoc, setDoc, deleteDoc, serverTimestamp, collection, query, limit, getDocs;
+    try {
+      ({ initializeApp } = await import(SDK + "firebase-app.js"));
+      ({ getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } = await import(SDK + "firebase-auth.js"));
+      ({ getFirestore, doc, getDoc, setDoc, deleteDoc, serverTimestamp, collection, query, limit, getDocs } = await import(SDK + "firebase-firestore.js"));
+    } catch (e) {
+      $("signin").disabled = true;
+      say("The sign-in service could not be loaded. Check your connection or content blocker and reload this page, or use the email option below.", true);
+      throw e;
+    }
 
     // Public web config of Firebase project invtracker-b19d1 (same as the app's web options; not a secret).
     const app = initializeApp({
@@ -171,8 +189,6 @@
     });
     const auth = getAuth(app);
     const db = getFirestore(app);
-    const $ = (id) => document.getElementById(id);
-    const say = (text, isErr) => { $("msg").textContent = text || ""; $("msg").className = isErr ? "err" : ""; };
     const requestRef = (uid) => doc(db, "deletionRequests", uid);
 
     async function refresh(user) {
@@ -188,8 +204,8 @@
         }
         const probe = await getDocs(query(collection(db, "users", user.uid, "investments"), limit(1)));
         $("datainfo").textContent = probe.empty
-          ? "We found no synced data for this account; the account itself will still be removed."
-          : "We found data for this account.";
+          ? "We found no investments for this account; the account itself will still be removed."
+          : "We found investments for this account.";
         $("form").hidden = false;
       } catch (e) {
         say("Could not reach the server (" + (e.code || e.message) + "). Please try again, or use the email option below.", true);
@@ -197,6 +213,9 @@
     }
 
     onAuthStateChanged(auth, (user) => {
+      // A new sign-in (or sign-out) must never inherit the previous person's ticked confirmation.
+      $("confirm").checked = false;
+      $("request").disabled = true;
       $("signed-out").hidden = !!user;
       $("signed-in").hidden = !user;
       if (user) { $("who").textContent = user.email || user.uid; refresh(user); }
