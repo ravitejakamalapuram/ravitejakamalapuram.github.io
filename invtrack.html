@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InvTrack: track FDs, P2P lending, bonds, chit funds and gold</title>
+  <meta name="description" content="InvTrack is an Android app for the investments your broker app can't see. Record money in and out, and see your true annual return (XIRR), MOIC, goals and FIRE number.">
+  <meta name="author" content="Ravi Teja Kamalapuram">
+  <link rel="canonical" href="https://ravitejakamalapuram.github.io/invtrack.html">
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Apps by Raviteja Kamalapuram">
+  <meta property="og:title" content="InvTrack: track FDs, P2P lending, bonds, chit funds and gold">
+  <meta property="og:description" content="Record money in and out of the investments your broker app can't see, and see your true annual return (XIRR).">
+  <meta property="og:url" content="https://ravitejakamalapuram.github.io/invtrack.html">
+  <meta property="og:image" content="https://ravitejakamalapuram.github.io/assets/icons/invtrack.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="InvTrack: track FDs, P2P lending, bonds, chit funds and gold">
+  <meta name="twitter:description" content="Record money in and out of the investments your broker app can't see, and see your true annual return (XIRR).">
+
+  <link rel="icon" type="image/png" href="assets/icons/invtrack.png">
+
+  <style>
+    :root {
+      --primary: #5b52e8;
+      --primary-hover: #4a41d4;
+      --primary-text: #ffffff;
+      --primary-soft: #efeeff;
+      --text: #1e293b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --muted: #475569;
+      --focus: #2563eb;
+      --shadow: 0 1px 2px rgba(15, 23, 42, .05), 0 4px 16px rgba(15, 23, 42, .06);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #a5a0ff;
+        --primary-hover: #c1bdff;
+        --primary-text: #0f172a;
+        --primary-soft: #25233f;
+        --text: #e2e8f0;
+        --bg: #0f172a;
+        --card-bg: #1e293b;
+        --border: #334155;
+        --muted: #a3b1c6;
+        --focus: #93c5fd;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 16px rgba(0, 0, 0, .25);
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { color: var(--primary); }
+    a:hover { color: var(--primary-hover); }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+
+    .skip-link {
+      position: absolute; left: 16px; top: -48px; padding: 8px 14px;
+      background: var(--primary); color: var(--primary-text); border-radius: 8px;
+      font-weight: 600; text-decoration: none; z-index: 10;
+    }
+    .skip-link:focus { top: 12px; color: var(--primary-text); }
+
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 640px) { .wrap { padding: 0 24px; } }
+
+    .site-header { border-bottom: 1px solid var(--border); }
+    .site-header .wrap {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px 16px; min-height: 60px; flex-wrap: wrap;
+    }
+    .brand { font-weight: 800; color: var(--text); text-decoration: none; }
+    .brand:hover { color: var(--text); }
+    .site-nav ul { display: flex; gap: 4px 16px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+    .site-nav a { color: var(--muted); text-decoration: none; font-size: .925rem; font-weight: 500; }
+    .site-nav a:hover { color: var(--text); }
+
+    .hero { padding: 48px 0 16px; }
+    .hero-top { display: flex; gap: 18px; align-items: center; margin-bottom: 18px; }
+    .app-icon { width: 80px; height: 80px; border-radius: 20px; flex-shrink: 0; background: var(--primary-soft); }
+    .hero h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; letter-spacing: -.025em; margin: 0; font-weight: 800; }
+    .hero .tag { margin: 4px 0 0; color: var(--muted); font-weight: 500; }
+    .hero p.lead { font-size: 1.15rem; max-width: 680px; margin: 0 0 22px; }
+    .hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px; padding: 10px 20px; border-radius: 10px;
+      font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--primary); color: var(--primary-text); }
+    .btn-primary:hover { background: var(--primary-hover); color: var(--primary-text); }
+    .btn-secondary { background: transparent; color: var(--text); border-color: var(--border); }
+    .btn-secondary:hover { background: var(--primary-soft); color: var(--text); }
+    .fineprint { margin: 12px 0 0; color: var(--muted); font-size: .875rem; }
+
+    section.block { padding: 32px 0 4px; }
+    section.block h2 { font-size: 1.5rem; letter-spacing: -.01em; margin: 0 0 8px; }
+    section.block > p, .block .intro { color: var(--muted); margin: 0 0 16px; max-width: 700px; }
+
+    .grid { display: grid; grid-template-columns: 1fr; gap: 16px; list-style: none; margin: 0; padding: 0; }
+    @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    .grid > li { min-width: 0; }
+    .card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
+      padding: 20px; box-shadow: var(--shadow); height: 100%;
+    }
+    .card h3 { font-size: 1.1rem; margin: 0 0 8px; line-height: 1.3; }
+    .card p { margin: 0 0 8px; color: var(--muted); font-size: .95rem; }
+    .card ul { margin: 0; padding-left: 20px; color: var(--muted); font-size: .95rem; }
+    .card li { margin-bottom: 4px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0 0 12px; padding: 0; }
+    .chips li {
+      background: var(--primary-soft); color: var(--text); border-radius: 999px;
+      padding: 4px 14px; font-size: .925rem;
+    }
+
+    .callout {
+      background: var(--primary-soft); border-left: 4px solid var(--primary);
+      border-radius: 4px; padding: 14px 16px; margin: 0 0 16px; max-width: 700px;
+    }
+    .callout p { margin: 0; color: var(--text); }
+
+    .site-footer { margin-top: 48px; border-top: 1px solid var(--border); padding: 28px 0 40px; color: var(--muted); font-size: .9rem; }
+    .site-footer p { margin: 0 0 8px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 4px 16px; list-style: none; margin: 0 0 12px; padding: 0; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">Raviteja Kamalapuram</a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#privacy">Privacy</a></li>
+          <li><a href="#start">Get started</a></li>
+          <li><a href="./">All apps</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-top">
+          <img class="app-icon" src="assets/icons/invtrack.png" alt="InvTrack app icon" width="80" height="80">
+          <div>
+            <h1 id="hero-title">InvTrack</h1>
+            <p class="tag">An Android app for investments that have no daily price</p>
+          </div>
+        </div>
+        <p class="lead">Track what you invested and what came back. Fixed deposits, P2P lending, bonds, chit funds and gold, with your true annual return (XIRR) worked out for you.</p>
+        <div class="hero-links">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.invtracker.inv_tracker&amp;referrer=utm_source%3Dweb" rel="noopener" aria-label="Get InvTrack on Google Play">Get it on Google Play</a>
+          <a class="btn btn-secondary" href="privacy/invtrack.html">Privacy policy</a>
+        </div>
+        <p class="fineprint">Android only. Google Play is a trademark of Google LLC.</p>
+      </section>
+
+      <section class="block" id="track" aria-labelledby="track-title">
+        <h2 id="track-title">The investments your broker app can't see</h2>
+        <p>InvTrack is a ledger, not a price feed. You record what you put in and what came back (returns, interest, fees). It does not fetch market prices.</p>
+        <ul class="chips" aria-label="Investment types you can track">
+          <li>Fixed deposits</li>
+          <li>P2P lending</li>
+          <li>Bonds, NCDs and debentures</li>
+          <li>Chit funds</li>
+          <li>Gold, including Sovereign Gold Bonds</li>
+          <li>Real estate</li>
+          <li>Invoice discounting</li>
+          <li>Private equity and angel investments</li>
+          <li>Crypto</li>
+          <li>Anything else where money goes in and comes back later</li>
+        </ul>
+      </section>
+
+      <section class="block" id="xirr" aria-labelledby="xirr-title">
+        <h2 id="xirr-title">Annual returns, worked out for you</h2>
+        <p>A simple percentage ignores time. InvTrack uses XIRR, the annual-return formula behind Excel's XIRR, so the date of every payment counts.</p>
+        <div class="callout">
+          <p><strong>Example:</strong> you put &#8377;1,00,000 into an FD on 1 April 2025 and get &#8377;1,07,100 back on 1 April 2026. That is 7.1% a year. Get the same &#8377;1,07,100 back on 1 October 2025 instead, and it is about 14.7% a year, because your money did the same work in half the time.</p>
+        </div>
+        <p>You also see total invested, total returned, net profit and how many times your money has multiplied (MOIC).</p>
+      </section>
+
+      <section class="block" id="features" aria-labelledby="features-title">
+        <h2 id="features-title">What you get</h2>
+        <ul class="grid">
+          <li>
+            <article class="card">
+              <h3>Never miss a payout</h3>
+              <ul>
+                <li>Reminders 7 days and 1 day before an investment matures.</li>
+                <li>Reminders when a regular payout is due, based on the payout schedule you set.</li>
+                <li>Turn each kind of reminder on or off in Settings.</li>
+              </ul>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <h3>Goals and FIRE in today's rupees</h3>
+              <ul>
+                <li>Set savings goals and track your progress.</li>
+                <li>Work out your FIRE number from your monthly expenses, with inflation built in, so the target is in today's money.</li>
+                <li>See how far your portfolio has got you.</li>
+              </ul>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <h3>Made for India, works globally</h3>
+              <ul>
+                <li>Amounts in lakh and crore (&#8377;1,00,000) when your base currency is INR.</li>
+                <li>Record each investment in its own currency: INR, USD, EUR, GBP, AED, SGD and more.</li>
+                <li>Totals are converted to your base currency.</li>
+              </ul>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <h3>Data in and out</h3>
+              <ul>
+                <li>Add many investments at once from a CSV file, using the template in the app.</li>
+                <li>Export your whole portfolio as a ZIP file of CSVs, and import it on another device.</li>
+                <li>Attach PDFs and photos, such as FD receipts and statements, to an investment.</li>
+              </ul>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <section class="block" id="privacy" aria-labelledby="privacy-title">
+        <h2 id="privacy-title">Privacy, stated plainly</h2>
+        <ul class="grid">
+          <li>
+            <article class="card">
+              <h3>Where your data lives</h3>
+              <ul>
+                <li>Your records are stored in InvTrack's Google Firebase project, under your account, so they sync across your devices. Google encrypts them in transit and at rest.</li>
+                <li>Works offline after first sign-in. Changes sync when you are back online.</li>
+                <li>Attached files stay on your phone.</li>
+                <li>We do not sell your data, and the app shows no ads.</li>
+                <li>The developer can technically access stored data. That happens only to answer a support request from you, to process a deletion request, or when the law requires it.</li>
+              </ul>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <h3>What is collected automatically</h3>
+              <ul>
+                <li>Google Firebase Analytics, Crashlytics and Performance Monitoring measure app usage and diagnose crashes and slowness.</li>
+                <li>This data is tied to your user ID and device identifiers. It is always on: there is currently no opt-out.</li>
+                <li>Amounts are reported only in ranges, not exact values.</li>
+                <li>InvTrack does not read your bank account or your messages. You enter your own data.</li>
+              </ul>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <h3>On your screen</h3>
+              <ul>
+                <li>Lock the app with a PIN or fingerprint.</li>
+                <li>Privacy mode hides amounts on screen with one tap.</li>
+              </ul>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <h3>Your control</h3>
+              <ul>
+                <li>Export your data any time: Settings &gt; Data &amp; Account &gt; Export as CSV or Export as ZIP.</li>
+                <li>Delete your account and data in the app: Settings &gt; Data &amp; Account &gt; Delete Account.</li>
+                <li>No app? <a href="privacy/invtrack-delete-account.html">Delete your account from the web</a>.</li>
+                <li>Read the full <a href="privacy/invtrack.html">privacy policy</a>.</li>
+              </ul>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <section class="block" id="not" aria-labelledby="not-title">
+        <h2 id="not-title">What InvTrack is not</h2>
+        <ul>
+          <li>Not a broker. You cannot buy or sell anything in the app.</li>
+          <li>Not an investment adviser. It shows your numbers; it does not tell you what to buy.</li>
+          <li>No bank or SMS access. You enter your own data.</li>
+        </ul>
+      </section>
+
+      <section class="block" id="start" aria-labelledby="start-title">
+        <h2 id="start-title">Start in 10 seconds</h2>
+        <p>Tap Continue as Guest. No sign-up needed. Guest data can only be reached from this device and is lost if you sign out or uninstall, so link a Google account later to keep it. Or sign in with Google from the start to back up your data and use InvTrack on more than one device.</p>
+        <div class="hero-links">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.invtracker.inv_tracker&amp;referrer=utm_source%3Dweb" rel="noopener" aria-label="Get InvTrack on Google Play">Get it on Google Play</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <ul class="footer-links">
+        <li><a href="privacy/invtrack.html">Privacy policy</a></li>
+        <li><a href="privacy/invtrack-delete-account.html">Delete your account</a></li>
+        <li><a href="https://github.com/ravitejakamalapuram/InvTrack" rel="noopener">GitHub repo</a></li>
+        <li><a href="./">All apps</a></li>
+      </ul>
+      <p>Developed by Ravi Teja Kamalapuram. Support: <a href="mailto:support@invtracker.app">support@invtracker.app</a></p>
+      <p>Google Play is a trademark of Google LLC.</p>
+    </div>
+  </footer>
+</body>
+</html>
