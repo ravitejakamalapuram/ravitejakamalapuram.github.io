@@ -143,8 +143,10 @@
       <code>api.exchangerate-api.com</code>. It sends only currency codes and dates. Like any internet request,
       this shows your device's IP address to them.</p>
     <p>The app may download its fonts from Google Fonts, which then sees your device's IP address, and it checks
-      for updates through Google Play's in-app update service.</p>
-    <p>The app shows no ads.</p>
+      for updates through Google Play's in-app update service. When the app asks you to rate it, Google Play shows
+      and handles the review prompt; the app is not told whether you left a review.</p>
+    <p>The app shows no ads. It still includes Google's mobile ads library (Google Mobile Ads), and its Android
+      permissions include the advertising ID permission, which Firebase Analytics can use.</p>
 
     <h2 id="storage">5. Where Your Data Is Stored</h2>
     <p>Your records are stored in Google Firebase (Cloud Firestore), and usage, crash and performance data is
@@ -163,19 +165,21 @@
       <li><strong>Correct your data:</strong> edit any record in the app.</li>
       <li><strong>Delete your account and data:</strong> Settings &gt; Data &amp; Account &gt; Delete Account. If you
         cannot use the app, open
-        <a class="url" href="https://ravitejakamalapuram.github.io/privacy/invtrack-delete-account.html">https://ravitejakamalapuram.github.io/privacy/invtrack-delete-account.html</a>
-        or email <a href="mailto:support@invtracker.app">support@invtracker.app</a> from the email address you
-        signed in with.</li>
-      <li><strong>Withdraw consent:</strong> there is currently no switch to turn off Analytics, Crashlytics or
+        <a class="url" href="https://ravitejakamalapuram.github.io/delete/invtrack.html">https://ravitejakamalapuram.github.io/delete/invtrack.html</a>
+        and sign in with the same Google account to ask for deletion (you can withdraw the request there before it
+        is processed), or email <a href="mailto:support@invtracker.app">support@invtracker.app</a> from the email
+        address you signed in with. A guest account cannot be requested on that page; delete it in the app.</li>
+      <li><strong>Withdraw consent:</strong> There is currently no switch to turn off Analytics, Crashlytics or
         Performance Monitoring. Signing out or deleting your account removes your user ID from new reports, and
         uninstalling the app stops them.</li>
     </ul>
 
     <h2 id="after-deletion">8. After You Delete Your Account</h2>
-    <p>We delete your records and your sign-in account. We also ask Google Analytics to delete the events tied to
-      your user ID; Google carries this out on its own schedule. We cannot delete individual crash reports. They
-      are deleted automatically at the end of the Crashlytics retention period. Once you are signed out, new crash
-      and analytics reports from this device no longer carry your user ID.</p>
+    <p>We delete your records and your sign-in account. Analytics events tied to your user ID are deleted
+      automatically at the end of Google's retention period. We may also ask Google to delete them sooner; Google
+      carries out any such request on its own schedule. We cannot delete individual crash reports. They are deleted
+      automatically at the end of the Crashlytics retention period. Once you are signed out, new crash and
+      analytics reports from this device no longer carry your user ID.</p>
 
     <h2 id="security">9. Security</h2>
     <p>We use administrative, technical, and physical security measures to help protect your personal information.
@@ -190,7 +194,7 @@
 
     <footer>
       &copy; 2026 Ravi Teja Kamalapuram &bull; InvTrack Privacy Policy &bull; Last updated October 10, 2026
-      &bull; <a href="invtrack-delete-account.html">Delete your account</a>
+      &bull; <a href="../delete/invtrack.html">Delete your account</a>
       &bull; <a href="../invtrack.html">About InvTrack</a>
     </footer>
   </div>
