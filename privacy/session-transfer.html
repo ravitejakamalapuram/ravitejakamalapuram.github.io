@@ -81,26 +81,40 @@
     </header>
 
     <div class="highlight-box">
-      <strong>Summary:</strong> Session Transfer is a developer utility for transferring active web tab session state between browser profiles or devices. Session transfers execute point-to-point or via manual encrypted export/import. No session data is ever collected or logged by the developer.
+      <strong>Summary:</strong> Session Transfer is a utility for moving the session state of a website the user is logged into between browser profiles or devices. Transfers happen through a user-saved package (optionally encrypted) or, with the opt-in live transfer beta, directly between two browsers. No session data is ever collected, received, or logged by the developer.
     </div>
 
     <h2>1. Single Purpose</h2>
-    <p>Session Transfer enables developers to export and import active browser tab session data (cookies and local storage keys for specific tabs) between browser environments.</p>
+    <p>Export and import the session state (cookies and site storage) of a user-selected website between browser environments.</p>
 
     <h2>2. Data Collection and Usage</h2>
     <ul>
-      <li><strong>No Server-Side Logging</strong>: Transferred session artifacts are generated directly in memory for export by the user.</li>
-      <li><strong>Zero Third-Party Telemetry</strong>: No analytics or tracking libraries are included.</li>
-      <li><strong>User-Initiated Actions</strong>: Operations only occur upon explicit user interaction with the extension popup.</li>
+      <li><strong>User-initiated only.</strong> Data is read only for the site the user selects, plus cookies for up to 5 extra sign-in sites the user lists under "Also include cookies from other sites", and only when the user presses Transfer, Receive or "Export for Playwright" in the popup.</li>
+      <li><strong>Local, encrypted by default.</strong> Captured state is built on the device and saved by the user as a file or copied as text. By default it is encrypted with AES-256-GCM, with a key derived with PBKDF2-SHA256 from a transfer code (new for each export) that is not in the package. If the user turns on "Skip the code (same computer only)", the package is <strong>not encrypted</strong>: anyone with the text or file can restore the session, so treat it like a password. The extension refuses to import a package more than 5 minutes after it was made; this is a check made by the extension, not a cryptographic limit. The extension does not keep backups of destination state.</li>
+      <li><strong>No network transmission, unless you use live transfer.</strong> Copy and file transfer contact no servers; nothing is sent to the developer or any third party. The live transfer beta contacts one signalling server, described below.</li>
+      <li><strong>No analytics.</strong> No analytics or tracking libraries are included.</li>
     </ul>
 
-    <h2>3. Permissions and Justifications</h2>
+    <h2>3. Live Transfer (Beta)</h2>
+    <p>"Send to another computer (beta)", under More options, runs only when the user starts it. It connects the two browsers with WebRTC, paired through a small signalling server the developer runs on Cloudflare Workers.</p>
     <ul>
-      <li><code>cookies</code> & <code>storage</code>: Required to read and write session cookies and storage items for user-selected transfer targets.</li>
-      <li><code>activeTab</code>: Used to identify the current tab target for transfer upon toolbar icon click.</li>
+      <li><strong>What the signalling server sees:</strong> a random room id, the connection offer and answer of the two browsers (SDP, which holds their IP addresses, ports and DTLS fingerprints), each browser's IP address and user agent, and when the requests were made.</li>
+      <li><strong>What it keeps:</strong> only the room, for at most 5 minutes; the room is deleted as soon as the answer is read. Request logging is turned off in the Worker.</li>
+      <li><strong>What it never sees:</strong> the transfer code, the session package or any cookie. The package goes browser to browser over a WebRTC data channel, encrypted with AES-256-GCM under a key derived from the transfer code.</li>
+      <li><strong>Cloudflare:</strong> Cloudflare runs the platform and may hold standard request metadata (such as IP addresses and timestamps) under its own privacy policy, <a href="https://www.cloudflare.com/privacypolicy/" style="color: #38bdf8;">https://www.cloudflare.com/privacypolicy/</a>. The developer does not control that.</li>
+      <li><strong>Address lookup (STUN):</strong> each browser asks Cloudflare's public STUN server (stun.cloudflare.com) for its own public IP address, which is how WebRTC finds a direct path. That server sees the browser's IP address and nothing else.</li>
+      <li><strong>No relay:</strong> there is no TURN relay, so the connection fails on some networks, such as some corporate ones. Copy or file transfer then works with the same code.</li>
     </ul>
 
-    <h2>4. Contact Information</h2>
+    <h2>4. Permissions</h2>
+    <ul>
+      <li><code>cookies</code>: read and restore cookies for the selected site.</li>
+      <li><code>scripting</code>: run a one-time, user-initiated collect/restore function in the selected tab for localStorage, sessionStorage, IndexedDB and Cache Storage.</li>
+      <li><code>storage</code>: hold the on-device "Skip the code" setting and the short-lived "ready" result while the popup is closed.</li>
+      <li>Host access (all <code>http://</code> and <code>https://</code> sites): declared so sessions can be transferred for any site the user is logged into. Data is read only on demand, for the selected origin and any extra sign-in sites the user lists.</li>
+    </ul>
+
+    <h2>5. Contact Information</h2>
     <p>
       <strong>Developer:</strong> Raviteja Kamalapuram<br>
       <strong>Email:</strong> <a href="mailto:raviteja369.k@gmail.com" style="color: #38bdf8;">raviteja369.k@gmail.com</a>
