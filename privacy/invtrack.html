@@ -81,16 +81,16 @@
       <div class="meta">
         <strong>App:</strong> InvTrack (Google Play package <code>com.invtracker.inv_tracker</code>) &bull;
         <strong>Developer:</strong> Raviteja Kamalapuram &bull;
-        <strong>Last updated:</strong> <time datetime="2026-10-10">October 10, 2026</time>
+        <strong>Last updated:</strong> <time datetime="2026-11-10">November 10, 2026</time>
       </div>
     </header>
 
     <main>
     <div class="highlight-box">
       <strong>The short version:</strong> InvTrack keeps your investment records in its Google Firebase project,
-      under your account, so they sync across your devices and work offline. We do not sell your data, we do not
-      use it for advertising, and the app shows no ads. Usage, crash and performance data is collected by Google
-      Firebase tools and is always on, with no opt-out for now. You can delete your account and data in
+      under your account, so they sync across your devices and work offline. We do not sell your data and we do not
+      use it for advertising. The app shows an ad only if you choose to watch one. Usage, crash and performance
+      data is collected by Google Firebase tools, and you can turn it off in Settings under Privacy. You can delete your account and data in
       Settings &gt; Data &amp; Account, or on the web if you cannot use the app.
     </div>
 
@@ -129,8 +129,10 @@
       themselves stay on your device and are not uploaded.</p>
     <p>We also use Google Firebase Analytics, Crashlytics and Performance Monitoring to measure app usage and
       diagnose crashes and slowness. This diagnostic data is associated with your user ID and device identifiers,
-      and it is always on (there is currently no opt-out). Amounts are reported only in ranges, not exact values.
-      You can delete your account and data in Settings &gt; Data &amp; Account.</p>
+      and you can turn usage data and crash reports off in Settings under Privacy. Amounts are reported only in
+      ranges, not exact values. We also use Firebase App Check, which sends a device and app integrity check
+      (Google Play Integrity on Android, Apple DeviceCheck on iOS) to Google to confirm that requests come from
+      the genuine app. It is used only to protect our backend. You can delete your account and data in Settings &gt; Data &amp; Account.</p>
 
     <h2 id="data-usage">3. Data Usage</h2>
     <p>Your records are used only to provide the tracking features: returns, goals, reminders and syncing across
@@ -146,8 +148,14 @@
     <p>The app may download its fonts from Google Fonts, which then sees your device's IP address, and it checks
       for updates through Google Play's in-app update service. When the app asks you to rate it, Google Play shows
       and handles the review prompt; the app is not told whether you left a review.</p>
-    <p>The app shows no ads. It still includes Google's mobile ads library (Google Mobile Ads), and its Android
-      permissions include the advertising ID permission, which Firebase Analytics can use.</p>
+    <p>The app shows ads only if you choose to watch one. After you export your data as CSV or ZIP, or before you
+      export the Tax-Year report as CSV, you are asked whether to watch one short rewarded ad. It uses Google
+      AdMob (the Google Mobile Ads library) and shows non-personalised ads. The app does not show ads during your
+      first 7 days, shows at most 3 a day, and never shows ads while Privacy mode is on. If you are in the EU or
+      UK, Google shows its consent form first (Google's User Messaging Platform). Your investments, amounts and
+      names are never sent to advertisers. Google collects the device information it needs to serve and measure
+      the ad, such as your IP address and device identifiers. The app does not request the advertising ID
+      permission.</p>
 
     <h2 id="storage">5. Where Your Data Is Stored</h2>
     <p>Your records are stored in Google Firebase (Cloud Firestore), and usage, crash and performance data is
@@ -170,8 +178,9 @@
         and sign in with the same Google account to ask for deletion (you can withdraw the request there before it
         is processed), or email <a href="mailto:support@invtracker.app">support@invtracker.app</a> from the email
         address you signed in with. A guest account cannot be requested on that page; delete it in the app.</li>
-      <li><strong>Withdraw consent:</strong> There is currently no switch to turn off Analytics, Crashlytics or
-        Performance Monitoring. Signing out or deleting your account removes your user ID from new reports, and
+      <li><strong>Withdraw consent:</strong> In Settings under Privacy, you can turn off Share usage data
+        (Analytics and Performance Monitoring) and Send crash reports (Crashlytics). Turning crash reports off is
+        fully applied the next time the app opens. Signing out or deleting your account removes your user ID from new reports, and
         uninstalling the app stops them.</li>
     </ul>
 
@@ -196,7 +205,7 @@
     </main>
 
     <footer>
-      &copy; 2026 Raviteja Kamalapuram &bull; InvTrack Privacy Policy &bull; Last updated October 10, 2026
+      &copy; 2026 Raviteja Kamalapuram &bull; InvTrack Privacy Policy &bull; Last updated November 10, 2026
       &bull; <a href="../delete/invtrack.html">Delete your account</a>
       &bull; <a href="../invtrack.html">About InvTrack</a>
     </footer>
